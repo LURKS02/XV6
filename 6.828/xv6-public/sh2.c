@@ -7,6 +7,8 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/wait.h>
+#include <errno.h>
+
 
 // Simplifed xv6 shell.
 
@@ -71,12 +73,45 @@ runcmd(struct cmd *cmd)
       
     break;
 
-  case '>':
-  case '<':
+  case '>': 
+
     rcmd = (struct redircmd*)cmd;
     //fprintf(stderr, "redir not implemented\n");
     // Your code here ...
 
+    close(rcmd->fd);
+
+    if (open(rcmd->file, rcmd->flags, S_IRWXU) < 0){
+      fprintf(stderr, "open fails : %s\n", strerror(errno));
+      _exit(0);
+    }
+
+/*
+    if (red_fd != 1){
+      dup2(red_fd, 1);
+    }
+*/  
+    runcmd(rcmd->cmd);
+    break;
+
+  case '<':
+
+    rcmd = (struct redircmd*)cmd;
+    //fprintf(stderr, "redir not implemented\n");
+    // Your code here ...
+
+    //int red_fd2 = 0;
+
+    close(rcmd->fd);
+ 
+    if (open(rcmd->file, rcmd->flags, S_IRUSR) < 0){
+      fprintf(stderr, "open fails : %s\n", strerror(errno));
+      _exit(0);
+    }
+
+    //if (red_fd2 != 0){
+      //dup2(red_fd2, 0);
+    //}
     
     runcmd(rcmd->cmd);
     break;
@@ -85,7 +120,27 @@ runcmd(struct cmd *cmd)
     pcmd = (struct pipecmd*)cmd;
     //fprintf(stderr, "pipe not implemented\n");
     // Your code here ...
+    int p[2];
+    pipe(p);
+    if (fork() == 0) { 
+   
+      close(0);
+      dup(p[0]);
+      close(p[0]);
+      close(p[1]);
+      runcmd(pcmd->right);
 
+     }
+
+    else {
+
+      close(1);
+      dup(p[1]);
+      close(p[0]);
+      close(p[1]);
+      runcmd(pcmd->left);
+
+    }
 
     break;
   }    
