@@ -123,16 +123,13 @@ runcmd(struct cmd *cmd)
     int p[2];
     pipe(p);
     if (fork() == 0) { 
-   
+/*     
       close(0);
       dup(p[0]);
       close(p[0]);
       close(p[1]);
       runcmd(pcmd->right);
-
-     }
-
-    else {
+*/
 
       close(1);
       dup(p[1]);
@@ -140,6 +137,26 @@ runcmd(struct cmd *cmd)
       close(p[1]);
       runcmd(pcmd->left);
 
+
+
+     }
+
+    else {
+
+      wait(&r);
+      close(0);
+      dup(p[0]);
+      close(p[0]);
+      close(p[1]);
+      runcmd(pcmd->right);
+
+
+/*      close(1);
+      dup(p[1]);
+      close(p[0]);
+      close(p[1]);
+      runcmd(pcmd->left);
+*/
     }
 
     break;
