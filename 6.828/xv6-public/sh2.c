@@ -66,7 +66,7 @@ runcmd(struct cmd *cmd)
     //fprintf(stderr, "exec not implemented\n");
     // Your code here ...
 
-    if (execvp(*ecmd->argv,ecmd->argv) < 0){
+    if (execvp(*ecmd->argv,ecmd->argv) < 0){ //exec command
       fprintf(stderr, "exec fails\n");
       _exit(0);
     }
@@ -79,9 +79,9 @@ runcmd(struct cmd *cmd)
     //fprintf(stderr, "redir not implemented\n");
     // Your code here ...
 
-    close(rcmd->fd);
+    close(rcmd->fd); // close the existing fd to allocate it for new file that will be opened
 
-    if (open(rcmd->file, rcmd->flags, S_IRWXU) < 0){
+    if (open(rcmd->file, rcmd->flags, S_IRWXU) < 0){ // command file open
       fprintf(stderr, "open fails : %s\n", strerror(errno));
       _exit(0);
     }
@@ -91,7 +91,7 @@ runcmd(struct cmd *cmd)
       dup2(red_fd, 1);
     }
 */  
-    runcmd(rcmd->cmd);
+    runcmd(rcmd->cmd); //command run
     break;
 
   case '<':
@@ -102,9 +102,10 @@ runcmd(struct cmd *cmd)
 
     //int red_fd2 = 0;
 
-    close(rcmd->fd);
+    close(rcmd->fd); // close the existing fd to allocate it for new file that will be opened
+
  
-    if (open(rcmd->file, rcmd->flags, S_IRUSR) < 0){
+    if (open(rcmd->file, rcmd->flags, S_IRUSR) < 0){ //command file open
       fprintf(stderr, "open fails : %s\n", strerror(errno));
       _exit(0);
     }
@@ -113,7 +114,7 @@ runcmd(struct cmd *cmd)
       //dup2(red_fd2, 0);
     //}
     
-    runcmd(rcmd->cmd);
+    runcmd(rcmd->cmd); //command run
     break;
 
   case '|':
@@ -121,42 +122,30 @@ runcmd(struct cmd *cmd)
     //fprintf(stderr, "pipe not implemented\n");
     // Your code here ...
     int p[2];
-    pipe(p);
+    pipe(p); 
     if (fork() == 0) { 
-/*     
-      close(0);
-      dup(p[0]);
-      close(p[0]);
-      close(p[1]);
-      runcmd(pcmd->right);
-*/
 
-      close(1);
-      dup(p[1]);
-      close(p[0]);
-      close(p[1]);
-      runcmd(pcmd->left);
+      //child
 
-
+      close(1); //close stdout
+      dup(p[1]); //duplicate p[1]
+      close(p[0]); 
+      close(p[1]); 
+      runcmd(pcmd->left); //output will go to p[1]
 
      }
 
     else {
 
-      wait(&r);
-      close(0);
-      dup(p[0]);
+      //parent
+
+      wait(&r); //wait for child
+      close(0); //close stdin
+      dup(p[0]); //duplicate p[0]
       close(p[0]);
       close(p[1]);
-      runcmd(pcmd->right);
+      runcmd(pcmd->right); //it will accept input through p[0]
 
-
-/*      close(1);
-      dup(p[1]);
-      close(p[0]);
-      close(p[1]);
-      runcmd(pcmd->left);
-*/
     }
 
     break;
