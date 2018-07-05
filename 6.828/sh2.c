@@ -82,6 +82,8 @@ runcmd(struct cmd *cmd)
     close(rcmd->fd); // close the existing fd to allocate it for new file that will be opened
 
     if (open(rcmd->file, rcmd->flags, S_IRWXU) < 0){ // command file open
+
+		//S_IRWXU mode can give the permission to read, write and execute so we can write at the opened file
       fprintf(stderr, "open fails : %s\n", strerror(errno));
       _exit(0);
     }
@@ -106,6 +108,7 @@ runcmd(struct cmd *cmd)
 
  
     if (open(rcmd->file, rcmd->flags, S_IRUSR) < 0){ //command file open
+			//S_IRUSR mode can let us to read the file so we can get the input through the file
       fprintf(stderr, "open fails : %s\n", strerror(errno));
       _exit(0);
     }
