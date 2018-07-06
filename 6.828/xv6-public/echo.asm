@@ -685,14 +685,12 @@ SYSCALL(uptime)
  33c:	b8 0e 00 00 00       	mov    $0xe,%eax
  341:	cd 40                	int    $0x40
  343:	c3                   	ret    
- 344:	90                   	nop
- 345:	90                   	nop
- 346:	90                   	nop
- 347:	90                   	nop
- 348:	90                   	nop
- 349:	90                   	nop
- 34a:	90                   	nop
- 34b:	90                   	nop
+
+00000344 <date>:
+SYSCALL(date)
+ 344:	b8 16 00 00 00       	mov    $0x16,%eax
+ 349:	cd 40                	int    $0x40
+ 34b:	c3                   	ret    
  34c:	90                   	nop
  34d:	90                   	nop
  34e:	90                   	nop

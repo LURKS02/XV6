@@ -929,14 +929,12 @@ SYSCALL(uptime)
  5cc:	b8 0e 00 00 00       	mov    $0xe,%eax
  5d1:	cd 40                	int    $0x40
  5d3:	c3                   	ret    
- 5d4:	90                   	nop
- 5d5:	90                   	nop
- 5d6:	90                   	nop
- 5d7:	90                   	nop
- 5d8:	90                   	nop
- 5d9:	90                   	nop
- 5da:	90                   	nop
- 5db:	90                   	nop
+
+000005d4 <date>:
+SYSCALL(date)
+ 5d4:	b8 16 00 00 00       	mov    $0x16,%eax
+ 5d9:	cd 40                	int    $0x40
+ 5db:	c3                   	ret    
  5dc:	90                   	nop
  5dd:	90                   	nop
  5de:	90                   	nop

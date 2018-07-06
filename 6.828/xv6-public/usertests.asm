@@ -8466,14 +8466,12 @@ SYSCALL(uptime)
     3d3c:	b8 0e 00 00 00       	mov    $0xe,%eax
     3d41:	cd 40                	int    $0x40
     3d43:	c3                   	ret    
-    3d44:	90                   	nop
-    3d45:	90                   	nop
-    3d46:	90                   	nop
-    3d47:	90                   	nop
-    3d48:	90                   	nop
-    3d49:	90                   	nop
-    3d4a:	90                   	nop
-    3d4b:	90                   	nop
+
+00003d44 <date>:
+SYSCALL(date)
+    3d44:	b8 16 00 00 00       	mov    $0x16,%eax
+    3d49:	cd 40                	int    $0x40
+    3d4b:	c3                   	ret    
     3d4c:	90                   	nop
     3d4d:	90                   	nop
     3d4e:	90                   	nop

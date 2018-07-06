@@ -833,14 +833,12 @@ SYSCALL(uptime)
  3fc:	b8 0e 00 00 00       	mov    $0xe,%eax
  401:	cd 40                	int    $0x40
  403:	c3                   	ret    
- 404:	90                   	nop
- 405:	90                   	nop
- 406:	90                   	nop
- 407:	90                   	nop
- 408:	90                   	nop
- 409:	90                   	nop
- 40a:	90                   	nop
- 40b:	90                   	nop
+
+00000404 <date>:
+SYSCALL(date)
+ 404:	b8 16 00 00 00       	mov    $0x16,%eax
+ 409:	cd 40                	int    $0x40
+ 40b:	c3                   	ret    
  40c:	90                   	nop
  40d:	90                   	nop
  40e:	90                   	nop

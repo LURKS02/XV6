@@ -2299,14 +2299,12 @@ SYSCALL(uptime)
      e7c:	b8 0e 00 00 00       	mov    $0xe,%eax
      e81:	cd 40                	int    $0x40
      e83:	c3                   	ret    
-     e84:	90                   	nop
-     e85:	90                   	nop
-     e86:	90                   	nop
-     e87:	90                   	nop
-     e88:	90                   	nop
-     e89:	90                   	nop
-     e8a:	90                   	nop
-     e8b:	90                   	nop
+
+00000e84 <date>:
+SYSCALL(date)
+     e84:	b8 16 00 00 00       	mov    $0x16,%eax
+     e89:	cd 40                	int    $0x40
+     e8b:	c3                   	ret    
      e8c:	90                   	nop
      e8d:	90                   	nop
      e8e:	90                   	nop

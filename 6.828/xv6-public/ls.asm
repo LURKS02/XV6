@@ -800,14 +800,12 @@ SYSCALL(uptime)
  63c:	b8 0e 00 00 00       	mov    $0xe,%eax
  641:	cd 40                	int    $0x40
  643:	c3                   	ret    
- 644:	90                   	nop
- 645:	90                   	nop
- 646:	90                   	nop
- 647:	90                   	nop
- 648:	90                   	nop
- 649:	90                   	nop
- 64a:	90                   	nop
- 64b:	90                   	nop
+
+00000644 <date>:
+SYSCALL(date)
+ 644:	b8 16 00 00 00       	mov    $0x16,%eax
+ 649:	cd 40                	int    $0x40
+ 64b:	c3                   	ret    
  64c:	90                   	nop
  64d:	90                   	nop
  64e:	90                   	nop

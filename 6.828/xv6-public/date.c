@@ -2,16 +2,12 @@
 #include "user.h"
 #include "date.h"
 
-int date(struct rtcdate *r){
-  cmostime(r);
-  return 1;
-}
 
 int main(int argc, char *argv[])
 {
   struct rtcdate r;
 
-  if (!date(&r)) {
+  if (date(&r)) {
     printf(2, "date failed\n");
     exit();
   }

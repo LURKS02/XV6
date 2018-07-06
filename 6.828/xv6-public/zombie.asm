@@ -660,14 +660,12 @@ SYSCALL(uptime)
  2ec:	b8 0e 00 00 00       	mov    $0xe,%eax
  2f1:	cd 40                	int    $0x40
  2f3:	c3                   	ret    
- 2f4:	90                   	nop
- 2f5:	90                   	nop
- 2f6:	90                   	nop
- 2f7:	90                   	nop
- 2f8:	90                   	nop
- 2f9:	90                   	nop
- 2fa:	90                   	nop
- 2fb:	90                   	nop
+
+000002f4 <date>:
+SYSCALL(date)
+ 2f4:	b8 16 00 00 00       	mov    $0x16,%eax
+ 2f9:	cd 40                	int    $0x40
+ 2fb:	c3                   	ret    
  2fc:	90                   	nop
  2fd:	90                   	nop
  2fe:	90                   	nop
