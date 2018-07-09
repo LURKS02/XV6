@@ -14,6 +14,8 @@ extern uint vectors[];  // in vectors.S: array of 256 entry pointers
 struct spinlock tickslock;
 uint ticks;
 
+int mappages(pde_t *pgdir, void *va, uint size, uint pa, int perm);
+
 void
 tvinit(void)
 {
@@ -45,6 +47,28 @@ trap(struct trapframe *tf)
       exit();
     return;
   }
+
+/////
+  if (tf->trapno == T_PGFLT){
+    
+    char *mem;
+    mem = kalloc();
+    if (mem == 0){
+      cprintf("kalloc out of memory\n");
+      return ;
+    }
+    memset(mem, 0, PGSIZE);
+
+    uint a = PGROUNDDOWN(rcr2());
+    if (mappages(myproc()->pgdir, (char*)a, PGSIZE, V2P(mem), PTE_W|PTE_U) < 0){
+      cprintf("mappages fail");
+      kfree(mem);  
+      return ;
+    }
+   // myproc()->killed = 1;
+    return ;
+  }
+/////
 
   switch(tf->trapno){
   case T_IRQ0 + IRQ_TIMER:

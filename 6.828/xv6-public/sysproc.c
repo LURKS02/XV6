@@ -51,8 +51,8 @@ sys_sbrk(void)
   if(argint(0, &n) < 0)
     return -1;
   addr = myproc()->sz;
-  if(growproc(n) < 0)
-    return -1;
+  myproc()->sz += n;
+
   return addr;
 }
 
@@ -98,3 +98,8 @@ int sys_date(void){
   return 0;
 }
 
+/*int dup2(void){
+  int from, int to;
+  if (argint(0, &from) < 0 || argint(1, &to) < 0)
+    return -1;
+  */
