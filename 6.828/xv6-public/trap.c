@@ -49,18 +49,19 @@ trap(struct trapframe *tf)
   }
 
 /////
-  if (tf->trapno == T_PGFLT){
+  if (tf->trapno == T_PGFLT){ //if page fault occurs
     
     char *mem;
     mem = kalloc();
-    if (mem == 0){
+    if (mem == 0){  //alloc new page
       cprintf("kalloc out of memory\n");
       return ;
     }
-    memset(mem, 0, PGSIZE);
+    memset(mem, 0, PGSIZE); //memory initialize
 
-    uint a = PGROUNDDOWN(rcr2());
-    if (mappages(myproc()->pgdir, (char*)a, PGSIZE, V2P(mem), PTE_W|PTE_U) < 0){
+    uint a = PGROUNDDOWN(rcr2()); //find a start address of the page that the given address is included
+
+    if (mappages(myproc()->pgdir, (char*)a, PGSIZE, V2P(mem), PTE_W|PTE_U) < 0){ //mapping
       cprintf("mappages fail");
       kfree(mem);  
       return ;
