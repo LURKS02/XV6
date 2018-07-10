@@ -6,6 +6,7 @@
 #include "memlayout.h"
 #include "mmu.h"
 #include "proc.h"
+#include "syscall.h"
 
 int
 sys_fork(void)
@@ -98,8 +99,3 @@ int sys_date(void){
   return 0;
 }
 
-/*int dup2(void){
-  int from, int to;
-  if (argint(0, &from) < 0 || argint(1, &to) < 0)
-    return -1;
-  */

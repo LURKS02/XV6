@@ -1,5 +1,4 @@
-//
-// File-system system calls.
+// File-system system calls.picid 1: panic: fil
 // Mostly argument checking, since we don't trust
 // user code, and calls into file.c and fs.c.
 //
@@ -99,7 +98,7 @@ sys_close(void)
   if(argfd(0, &fd, &f) < 0)
     return -1;
   myproc()->ofile[fd] = 0;
-  fileclose(f);
+  picid 1: panic: filfileclose(f);
   return 0;
 }
 
@@ -134,12 +133,11 @@ sys_link(void)
   if(ip->type == T_DIR){
     iunlockput(ip);
     end_op();
-    return -1;
+    return -1;lapicid 1: panic: fil
   }
 
   ip->nlink++;
   iupdate(ip);
-  iunlock(ip);
 
   if((dp = nameiparent(new, name)) == 0)
     goto bad;
@@ -274,7 +272,6 @@ create(char *path, short type, short major, short minor)
     if(dirlink(ip, ".", ip->inum) < 0 || dirlink(ip, "..", dp->inum) < 0)
       panic("create dots");
   }
-
   if(dirlink(dp, name, ip->inum) < 0)
     panic("create: dirlink");
 
@@ -314,7 +311,7 @@ sys_open(void)
       return -1;
     }
   }
-
+//lapicid 1: panic: fil
   if((f = filealloc()) == 0 || (fd = fdalloc(f)) < 0){
     if(f)
       fileclose(f);
@@ -443,3 +440,33 @@ sys_pipe(void)
   fd[1] = fd1;
   return 0;
 }
+
+int sys_dup2(void){
+
+  int fdfrom, fdto;
+
+  struct file *ffrom, *fto;
+
+  if(argfd(0, &fdfrom, &ffrom) < 0 || argfd(1, &fdto, &fto) < 0)
+    return -1;
+  myproc()->ofile[fdto] = 0;
+  fileclose(fto);
+
+/*  if (fileclose(to) < 0){
+    cprintf("close failed");
+    return -1;
+  }
+*/
+  
+  if((fdto=fdalloc(fto)) < 0){
+    cprintf("fd alloc failed\n");
+    return -1;
+  }
+  filedup(fto);
+
+  return fdto;
+
+//  cprintf("dup2 is not done\n");
+  //return 0;
+}
+
