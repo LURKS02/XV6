@@ -844,14 +844,12 @@ SYSCALL(dup2)
  3ec:	b8 17 00 00 00       	mov    $0x17,%eax
  3f1:	cd 40                	int    $0x40
  3f3:	c3                   	ret    
- 3f4:	90                   	nop
- 3f5:	90                   	nop
- 3f6:	90                   	nop
- 3f7:	90                   	nop
- 3f8:	90                   	nop
- 3f9:	90                   	nop
- 3fa:	90                   	nop
- 3fb:	90                   	nop
+
+000003f4 <alarm>:
+SYSCALL(alarm)
+ 3f4:	b8 18 00 00 00       	mov    $0x18,%eax
+ 3f9:	cd 40                	int    $0x40
+ 3fb:	c3                   	ret    
  3fc:	90                   	nop
  3fd:	90                   	nop
  3fe:	90                   	nop

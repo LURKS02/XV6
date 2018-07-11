@@ -2311,14 +2311,12 @@ SYSCALL(dup2)
      e8c:	b8 17 00 00 00       	mov    $0x17,%eax
      e91:	cd 40                	int    $0x40
      e93:	c3                   	ret    
-     e94:	90                   	nop
-     e95:	90                   	nop
-     e96:	90                   	nop
-     e97:	90                   	nop
-     e98:	90                   	nop
-     e99:	90                   	nop
-     e9a:	90                   	nop
-     e9b:	90                   	nop
+
+00000e94 <alarm>:
+SYSCALL(alarm)
+     e94:	b8 18 00 00 00       	mov    $0x18,%eax
+     e99:	cd 40                	int    $0x40
+     e9b:	c3                   	ret    
      e9c:	90                   	nop
      e9d:	90                   	nop
      e9e:	90                   	nop

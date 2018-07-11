@@ -8478,14 +8478,12 @@ SYSCALL(dup2)
     3d4c:	b8 17 00 00 00       	mov    $0x17,%eax
     3d51:	cd 40                	int    $0x40
     3d53:	c3                   	ret    
-    3d54:	90                   	nop
-    3d55:	90                   	nop
-    3d56:	90                   	nop
-    3d57:	90                   	nop
-    3d58:	90                   	nop
-    3d59:	90                   	nop
-    3d5a:	90                   	nop
-    3d5b:	90                   	nop
+
+00003d54 <alarm>:
+SYSCALL(alarm)
+    3d54:	b8 18 00 00 00       	mov    $0x18,%eax
+    3d59:	cd 40                	int    $0x40
+    3d5b:	c3                   	ret    
     3d5c:	90                   	nop
     3d5d:	90                   	nop
     3d5e:	90                   	nop

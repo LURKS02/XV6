@@ -73,12 +73,24 @@ trap(struct trapframe *tf)
 
   switch(tf->trapno){
   case T_IRQ0 + IRQ_TIMER:
+   
     if(cpuid() == 0){
       acquire(&tickslock);
       ticks++;
       wakeup(&ticks);
       release(&tickslock);
     }
+
+    if(myproc() != 0 && (tf->cs & 3) == 3){
+      myproc()->myticks++;
+      if (myproc()->myticks >= myproc()->alarmticks){
+        myproc()->myticks = 0;
+        tf->esp -= 4;
+        *(uint*)tf->esp = tf->eip;
+        tf->eip = (uint)myproc()->handler;
+      }
+    }
+
     lapiceoi();
     break;
   case T_IRQ0 + IRQ_IDE:
@@ -104,6 +116,7 @@ trap(struct trapframe *tf)
     break;
 
   //PAGEBREAK: 13
+  
   default:
     if(myproc() == 0 || (tf->cs&3) == 0){
       // In kernel, it must be our mistake.

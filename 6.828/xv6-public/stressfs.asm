@@ -845,14 +845,12 @@ SYSCALL(dup2)
  40c:	b8 17 00 00 00       	mov    $0x17,%eax
  411:	cd 40                	int    $0x40
  413:	c3                   	ret    
- 414:	90                   	nop
- 415:	90                   	nop
- 416:	90                   	nop
- 417:	90                   	nop
- 418:	90                   	nop
- 419:	90                   	nop
- 41a:	90                   	nop
- 41b:	90                   	nop
+
+00000414 <alarm>:
+SYSCALL(alarm)
+ 414:	b8 18 00 00 00       	mov    $0x18,%eax
+ 419:	cd 40                	int    $0x40
+ 41b:	c3                   	ret    
  41c:	90                   	nop
  41d:	90                   	nop
  41e:	90                   	nop

@@ -98,7 +98,7 @@ sys_close(void)
   if(argfd(0, &fd, &f) < 0)
     return -1;
   myproc()->ofile[fd] = 0;
-  picid 1: panic: filfileclose(f);
+//  picid 1: panic: filfileclose(f);
   return 0;
 }
 
@@ -133,7 +133,7 @@ sys_link(void)
   if(ip->type == T_DIR){
     iunlockput(ip);
     end_op();
-    return -1;lapicid 1: panic: fil
+    return -1;
   }
 
   ip->nlink++;

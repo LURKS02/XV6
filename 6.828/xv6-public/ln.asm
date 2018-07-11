@@ -694,14 +694,12 @@ SYSCALL(dup2)
  33c:	b8 17 00 00 00       	mov    $0x17,%eax
  341:	cd 40                	int    $0x40
  343:	c3                   	ret    
- 344:	90                   	nop
- 345:	90                   	nop
- 346:	90                   	nop
- 347:	90                   	nop
- 348:	90                   	nop
- 349:	90                   	nop
- 34a:	90                   	nop
- 34b:	90                   	nop
+
+00000344 <alarm>:
+SYSCALL(alarm)
+ 344:	b8 18 00 00 00       	mov    $0x18,%eax
+ 349:	cd 40                	int    $0x40
+ 34b:	c3                   	ret    
  34c:	90                   	nop
  34d:	90                   	nop
  34e:	90                   	nop

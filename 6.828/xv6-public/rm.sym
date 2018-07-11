@@ -14,7 +14,7 @@
 00000000 ulib.c
 00000000 printf.c
 00000360 printint
-0000079a digits.1032
+0000079a digits.1035
 00000000 umalloc.c
 00000a18 freep
 00000a1c base
@@ -27,6 +27,7 @@
 0000034c dup2
 00000680 malloc
 00000334 sleep
+00000354 alarm
 000002b4 pipe
 000002c4 write
 000002fc fstat

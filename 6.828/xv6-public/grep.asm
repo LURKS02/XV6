@@ -941,14 +941,12 @@ SYSCALL(dup2)
  5dc:	b8 17 00 00 00       	mov    $0x17,%eax
  5e1:	cd 40                	int    $0x40
  5e3:	c3                   	ret    
- 5e4:	90                   	nop
- 5e5:	90                   	nop
- 5e6:	90                   	nop
- 5e7:	90                   	nop
- 5e8:	90                   	nop
- 5e9:	90                   	nop
- 5ea:	90                   	nop
- 5eb:	90                   	nop
+
+000005e4 <alarm>:
+SYSCALL(alarm)
+ 5e4:	b8 18 00 00 00       	mov    $0x18,%eax
+ 5e9:	cd 40                	int    $0x40
+ 5eb:	c3                   	ret    
  5ec:	90                   	nop
  5ed:	90                   	nop
  5ee:	90                   	nop
