@@ -81,13 +81,13 @@ trap(struct trapframe *tf)
       release(&tickslock);
     }
 
-    if(myproc() != 0 && (tf->cs & 3) == 3){
-      myproc()->myticks++;
-      if (myproc()->myticks >= myproc()->alarmticks){
-        myproc()->myticks = 0;
-        tf->esp -= 4;
-        *(uint*)tf->esp = tf->eip;
-        tf->eip = (uint)myproc()->handler;
+    if(myproc() != 0 && (tf->cs & 3) == 3){ //if there's a process running and fi the timer interrupt came from user space
+      myproc()->myticks++; //tick increases to count the given alarmticks
+      if (myproc()->myticks >= myproc()->alarmticks){ //if tick meets the condition : if tick becomes larger than the given alarmticks
+        myproc()->myticks = 0; // the tick is initialized
+        tf->esp -= 4; // move esp to save present eip
+        *(uint*)tf->esp = tf->eip; //save eip
+        tf->eip = (uint)myproc()->handler; //eip is moved to start the given function
       }
     }
 
