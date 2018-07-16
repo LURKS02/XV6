@@ -2688,51 +2688,52 @@ entry:
 80102096:	83 ec 1c             	sub    $0x1c,%esp
 80102099:	c7 04 24 80 a5 10 80 	movl   $0x8010a580,(%esp)
 801020a0:	e8 db 20 00 00       	call   80104180 <acquire>
-801020a5:	8b 1d 64 a5 10 80    	mov    0x8010a564,%ebx
-801020ab:	85 db                	test   %ebx,%ebx
-801020ad:	74 30                	je     801020df <ideintr+0x4f>
-801020af:	8b 43 58             	mov    0x58(%ebx),%eax
-801020b2:	a3 64 a5 10 80       	mov    %eax,0x8010a564
-801020b7:	8b 33                	mov    (%ebx),%esi
-801020b9:	f7 c6 04 00 00 00    	test   $0x4,%esi
-801020bf:	74 37                	je     801020f8 <ideintr+0x68>
-801020c1:	83 e6 fb             	and    $0xfffffffb,%esi
-801020c4:	83 ce 02             	or     $0x2,%esi
-801020c7:	89 33                	mov    %esi,(%ebx)
-801020c9:	89 1c 24             	mov    %ebx,(%esp)
-801020cc:	e8 ef 1c 00 00       	call   80103dc0 <wakeup>
-801020d1:	a1 64 a5 10 80       	mov    0x8010a564,%eax
-801020d6:	85 c0                	test   %eax,%eax
-801020d8:	74 05                	je     801020df <ideintr+0x4f>
-801020da:	e8 71 fe ff ff       	call   80101f50 <idestart>
-801020df:	c7 04 24 80 a5 10 80 	movl   $0x8010a580,(%esp)
-801020e6:	e8 85 21 00 00       	call   80104270 <release>
-801020eb:	83 c4 1c             	add    $0x1c,%esp
-801020ee:	5b                   	pop    %ebx
-801020ef:	5e                   	pop    %esi
-801020f0:	5f                   	pop    %edi
-801020f1:	5d                   	pop    %ebp
-801020f2:	c3                   	ret    
-801020f3:	90                   	nop
-801020f4:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
-801020f8:	ba f7 01 00 00       	mov    $0x1f7,%edx
-801020fd:	8d 76 00             	lea    0x0(%esi),%esi
-80102100:	ec                   	in     (%dx),%al
-80102101:	89 c1                	mov    %eax,%ecx
-80102103:	83 e1 c0             	and    $0xffffffc0,%ecx
-80102106:	80 f9 40             	cmp    $0x40,%cl
-80102109:	75 f5                	jne    80102100 <ideintr+0x70>
-8010210b:	a8 21                	test   $0x21,%al
-8010210d:	75 b2                	jne    801020c1 <ideintr+0x31>
-8010210f:	8d 7b 5c             	lea    0x5c(%ebx),%edi
-80102112:	b9 80 00 00 00       	mov    $0x80,%ecx
-80102117:	ba f0 01 00 00       	mov    $0x1f0,%edx
-8010211c:	fc                   	cld    
-8010211d:	f3 6d                	rep insl (%dx),%es:(%edi)
-8010211f:	8b 33                	mov    (%ebx),%esi
-80102121:	eb 9e                	jmp    801020c1 <ideintr+0x31>
-80102123:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
-80102129:	8d bc 27 00 00 00 00 	lea    0x0(%edi,%eiz,1),%edi
+801020a5:	c7 04 24 80 a5 10 80 	movl   $0x8010a580,(%esp)
+801020ac:	e8 cf 20 00 00       	call   80104180 <acquire>
+801020b1:	8b 1d 64 a5 10 80    	mov    0x8010a564,%ebx
+801020b7:	85 db                	test   %ebx,%ebx
+801020b9:	74 30                	je     801020eb <ideintr+0x5b>
+801020bb:	8b 43 58             	mov    0x58(%ebx),%eax
+801020be:	a3 64 a5 10 80       	mov    %eax,0x8010a564
+801020c3:	8b 33                	mov    (%ebx),%esi
+801020c5:	f7 c6 04 00 00 00    	test   $0x4,%esi
+801020cb:	74 33                	je     80102100 <ideintr+0x70>
+801020cd:	83 e6 fb             	and    $0xfffffffb,%esi
+801020d0:	83 ce 02             	or     $0x2,%esi
+801020d3:	89 33                	mov    %esi,(%ebx)
+801020d5:	89 1c 24             	mov    %ebx,(%esp)
+801020d8:	e8 e3 1c 00 00       	call   80103dc0 <wakeup>
+801020dd:	a1 64 a5 10 80       	mov    0x8010a564,%eax
+801020e2:	85 c0                	test   %eax,%eax
+801020e4:	74 05                	je     801020eb <ideintr+0x5b>
+801020e6:	e8 65 fe ff ff       	call   80101f50 <idestart>
+801020eb:	c7 04 24 80 a5 10 80 	movl   $0x8010a580,(%esp)
+801020f2:	e8 79 21 00 00       	call   80104270 <release>
+801020f7:	83 c4 1c             	add    $0x1c,%esp
+801020fa:	5b                   	pop    %ebx
+801020fb:	5e                   	pop    %esi
+801020fc:	5f                   	pop    %edi
+801020fd:	5d                   	pop    %ebp
+801020fe:	c3                   	ret    
+801020ff:	90                   	nop
+80102100:	ba f7 01 00 00       	mov    $0x1f7,%edx
+80102105:	8d 76 00             	lea    0x0(%esi),%esi
+80102108:	ec                   	in     (%dx),%al
+80102109:	89 c1                	mov    %eax,%ecx
+8010210b:	83 e1 c0             	and    $0xffffffc0,%ecx
+8010210e:	80 f9 40             	cmp    $0x40,%cl
+80102111:	75 f5                	jne    80102108 <ideintr+0x78>
+80102113:	a8 21                	test   $0x21,%al
+80102115:	75 b6                	jne    801020cd <ideintr+0x3d>
+80102117:	8d 7b 5c             	lea    0x5c(%ebx),%edi
+8010211a:	b9 80 00 00 00       	mov    $0x80,%ecx
+8010211f:	ba f0 01 00 00       	mov    $0x1f0,%edx
+80102124:	fc                   	cld    
+80102125:	f3 6d                	rep insl (%dx),%es:(%edi)
+80102127:	8b 33                	mov    (%ebx),%esi
+80102129:	eb a2                	jmp    801020cd <ideintr+0x3d>
+8010212b:	90                   	nop
+8010212c:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
 
 80102130 <iderw>:
 80102130:	55                   	push   %ebp

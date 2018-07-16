@@ -9,7 +9,7 @@
 #define NBUCKET 5
 #define NKEYS 100000
 
-pthread_mutex_t lock[NBUCKET];
+pthread_mutex_t lock[NBUCKET]; //locks of each table bucket
 
 struct entry {
   int key;
@@ -59,7 +59,7 @@ static
 void put(int key, int value)
 {
   int i = key % NBUCKET;
-  pthread_mutex_lock(&lock[i]);
+  pthread_mutex_lock(&lock[i]); 
   insert(key, value, &table[i], table[i]); //multi threads insert given random numbers at table array
   pthread_mutex_unlock(&lock[i]);
 }
