@@ -26,5 +26,4 @@ thread_switch:
 
 	popal
 
-	/* YOUR CODE HERE */
 	ret				/* pop return address from stack */
